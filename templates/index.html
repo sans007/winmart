@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Data Form</title>
+</head>
+<body>
+    <h1>Item Data Form</h1>
+    <form id="itemForm" onsubmit="handleSubmit(event)">
+        <label for="Item_Identifier">Item Identifier (optional):</label>
+        <input type="text" id="Item_Identifier" name="Item_Identifier"><br><br>
+
+        <label for="Item_Weight">Item Weight:</label>
+        <input type="number" step="any" id="Item_Weight" name="Item_Weight" required><br><br>
+
+        <label for="Item_Fat_Content">Item Fat Content:</label>
+        <input type="text" id="Item_Fat_Content" name="Item_Fat_Content" required><br><br>
+
+        <label for="Item_Visibility">Item Visibility (optional):</label>
+        <input type="number" step="any" id="Item_Visibility" name="Item_Visibility"><br><br>
+
+        <label for="Item_Type">Item Type:</label>
+        <input type="text" id="Item_Type" name="Item_Type" required><br><br>
+
+        <label for="Item_MRP">Item MRP:</label>
+        <input type="number" step="any" id="Item_MRP" name="Item_MRP" required><br><br>
+
+        <label for="Outlet_Identifier">Outlet Identifier (optional):</label>
+        <input type="text" id="Outlet_Identifier" name="Outlet_Identifier"><br><br>
+
+        <label for="Outlet_Establishment_Year">Outlet Establishment Year:</label>
+        <input type="number" min="1900" max="2099" step="1" id="Outlet_Establishment_Year" name="Outlet_Establishment_Year" required><br><br>
+
+        <label for="Outlet_Size">Outlet Size:</label>
+        <input type="text" id="Outlet_Size" name="Outlet_Size" required><br><br>
+
+        <label for="Outlet_Location_Type">Outlet Location Type:</label>
+        <input type="text" id="Outlet_Location_Type" name="Outlet_Location_Type" required><br><br>
+
+        <label for="Outlet_Type">Outlet Type:</label>
+        <input type="text" id="Outlet_Type" name="Outlet_Type" required><br><br>
+
+        <button type="submit">Submit</button>
+        <h2>predicted Item Outlet Sales</h2>
+        <h3 id="data_predict"></h3>
+    </form>
+    <div id="result"></div>
+</body>
+<script>
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        const form = document.getElementById('itemForm');
+        const formData = new FormData(form);
+        const data = {};
+
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        try {
+            const response = await fetch('http://127.0.0.1:3000/api/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            displayResult(result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function displayResult(result) {
+        const resultDiv = document.getElementById('data_predict');
+        resultDiv.innerHTML = `${result}`;
+    }
+</script>
+</html>
