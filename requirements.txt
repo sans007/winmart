@@ -1,9 +1,10 @@
-Flask
-flask-CORS
-# sklearn
-seaborn
-scikit-learn
-xgboost
-pandas
+flask
+Flask-CORS
 numpy
+pandas
+scikit-learn
+seaborn
 matplotlib
+joblib
+xgboost
+openpyxl

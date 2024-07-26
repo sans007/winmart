@@ -1,82 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Item Data Form</title>
-</head>
-<body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .dropdown-container {
+        margin-bottom: 15px;
+      }
+      select {
+        width: 200px;
+        padding: 6px;
+        font-size: 16px;
+      }
+      #submit {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
     <h1>Item Data Form</h1>
     <form id="itemForm" onsubmit="handleSubmit(event)">
-        <label for="Item_Identifier">Item Identifier (optional):</label>
-        <input type="text" id="Item_Identifier" name="Item_Identifier"><br><br>
+      <label for="Item_Identifier">Item Identifier (optional):</label>
+      <input
+        type="text"
+        id="Item_Identifier"
+        name="Item_Identifier"
+      /><br /><br />
 
-        <label for="Item_Weight">Item Weight:</label>
-        <input type="number" step="any" id="Item_Weight" name="Item_Weight" required><br><br>
+      <label for="Item_Weight">Item Weight:</label>
+      <input
+        type="number"
+        step="any"
+        id="Item_Weight"
+        name="Item_Weight"
+        required
+      /><br /><br />
 
+      <div class="dropdown-container">
         <label for="Item_Fat_Content">Item Fat Content:</label>
-        <input type="text" id="Item_Fat_Content" name="Item_Fat_Content" required><br><br>
+        <select id="Item_Fat_Content" name="Item_Fat_Content" required>
+          <option value="Low Fat">Low Fat</option>
+          <option value="Regular">Regular</option>
+          <option value="Non-Edible">Non-Edible</option>
+        </select>
+      </div>
+      <br /><br />
 
-        <label for="Item_Visibility">Item Visibility (optional):</label>
-        <input type="number" step="any" id="Item_Visibility" name="Item_Visibility"><br><br>
+      <label for="Item_Visibility">Item Visibility (optional):</label>
+      <input
+        type="number"
+        step="any"
+        id="Item_Visibility"
+        name="Item_Visibility"
+      /><br /><br />
 
+      <div class="dropdown-container">
         <label for="Item_Type">Item Type:</label>
-        <input type="text" id="Item_Type" name="Item_Type" required><br><br>
+        <select id="Item_Type" name="Item_Type" required>
+          <option value="Drinks">Drinks</option>
+          <option value="Food">Food</option>
+          <option value="Non-Consumable">Non-Consumable</option>
+        </select>
+      </div>
 
-        <label for="Item_MRP">Item MRP:</label>
-        <input type="number" step="any" id="Item_MRP" name="Item_MRP" required><br><br>
+      <br /><br />
 
-        <label for="Outlet_Identifier">Outlet Identifier (optional):</label>
-        <input type="text" id="Outlet_Identifier" name="Outlet_Identifier"><br><br>
+      <label for="Item_MRP">Item MRP:</label>
+      <input
+        type="number"
+        step="any"
+        id="Item_MRP"
+        name="Item_MRP"
+        required
+      /><br /><br />
 
-        <label for="Outlet_Establishment_Year">Outlet Establishment Year:</label>
-        <input type="number" min="1900" max="2099" step="1" id="Outlet_Establishment_Year" name="Outlet_Establishment_Year" required><br><br>
+      <label for="Outlet_Identifier">Outlet Identifier (optional):</label>
+      <input
+        type="text"
+        id="Outlet_Identifier"
+        name="Outlet_Identifier"
+      /><br /><br />
 
+      <label for="Outlet_Establishment_Year">Outlet Establishment Year:</label>
+      <input
+        type="number"
+        min="1900"
+        max="2099"
+        step="1"
+        id="Outlet_Establishment_Year"
+        name="Outlet_Establishment_Year"
+        required
+      /><br /><br />
+
+      <div class="dropdown-container">
         <label for="Outlet_Size">Outlet Size:</label>
-        <input type="text" id="Outlet_Size" name="Outlet_Size" required><br><br>
+        <select type="text" id="Outlet_Size" name="Outlet_Size" required>
+          <option value="Small">Small</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
 
+      <br /><br />
+
+      <div class="dropdown-container">
         <label for="Outlet_Location_Type">Outlet Location Type:</label>
-        <input type="text" id="Outlet_Location_Type" name="Outlet_Location_Type" required><br><br>
+        <select id="Outlet_Location_Type" name="Outlet_Location_Type" required>
+          <option value="Tier 1">Tier 1</option>
+          <option value="Tier 2">Tier 2</option>
+          <option value="Tier 3">Tier 3</option>
+        </select>
+      </div>
 
+      <br /><br />
+
+      <div class="dropdown-container">
         <label for="Outlet_Type">Outlet Type:</label>
-        <input type="text" id="Outlet_Type" name="Outlet_Type" required><br><br>
+        <select id="Outlet_Type" name="Outlet_Type" required>
+          <option value="grocery-store">Grocery Store</option>
+          <option value="Supermarket Type1">Supermarket Type1</option>
+          <option value="Supermarket Type2">Supermarket Type2</option>
+          <option value="Supermarket Type3">Supermarket Type3</option>
+        </select>
+      </div>
 
-        <button type="submit">Submit</button>
-        <h2>predicted Item Outlet Sales</h2>
-        <h3 id="data_predict"></h3>
+      <br /><br />
+
+      <button id="submit" type="submit">Predict</button>
     </form>
-    <div id="result"></div>
-</body>
-<script>
+    <h2>predicted Item Outlet Sales</h2>
+    <h2
+      id="data_predict"
+      style="
+        color: white;
+        background-color: blueviolet;
+        padding: 1rem 2rem;
+        display: block;
+      "
+    ></h2>
+  </body>
+  <script>
     async function handleSubmit(event) {
-        event.preventDefault();
-        
-        const form = document.getElementById('itemForm');
-        const formData = new FormData(form);
-        const data = {};
+      event.preventDefault();
 
-        formData.forEach((value, key) => {
-            data[key] = value;
+      const form = document.getElementById("itemForm");
+      const formData = new FormData(form);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        const element = form.elements.namedItem(key);
+
+        if (element && element.type === "number") {
+          data[key] = Number(value);
+        } else {
+          data[key] = value;
+        }
+      });
+
+      try {
+        const response = await fetch("http://127.0.0.1:3000/api/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
 
-        try {
-            const response = await fetch('http://127.0.0.1:3000/api/submit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-
-            const result = await response.json();
-            displayResult(result);
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        const result = await response.json();
+        displayResult(result);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
 
     function displayResult(result) {
-        const resultDiv = document.getElementById('data_predict');
-        resultDiv.innerHTML = `${result}`;
+      const resultDiv = document.getElementById("data_predict");
+      resultDiv.innerHTML = `${result}`;
     }
-</script>
+  </script>
 </html>
