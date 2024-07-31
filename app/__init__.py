@@ -2,14 +2,12 @@ import numpy as np
 import pandas as pd
 from flask_cors import CORS
 from flask import Flask, request, jsonify, render_template
-from config import Config
 
 from notebook.model.prediction import Prediction
 
 def create_app():
 
     app = Flask(__name__)
-    app.config.from_object(Config)
     CORS(app)
 
 
