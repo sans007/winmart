@@ -5,6 +5,5 @@ pandas
 scikit-learn
 seaborn
 matplotlib
-joblib
 xgboost
-openpyxl
+waitress
