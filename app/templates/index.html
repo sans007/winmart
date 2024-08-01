@@ -169,7 +169,8 @@
       });
 
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/submit", {
+        const api_endpoint ="/api/submit"
+        const response = await fetch(api_endpoint, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -6,5 +6,6 @@ scikit-learn
 seaborn
 matplotlib
 xgboost
-waitress
 python-dotenv
+waitress
+gunicorn
